@@ -5,23 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Meshach Ando</title>
     <meta name="description" content="Portfolio of Meshach Ando - Civil & Environmental Engineering.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
-    <!-- Feature 3: Custom Cursor -->
-    <div class="cursor-dot"></div>
-    
-    <!-- Feature 5: Scroll Progress -->
-    <div class="scroll-progress"></div>
+    <!-- Feature 4: Liquid SVG Distortion Filter -->
+    <svg style="display:none;">
+        <filter id="liquid-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
 
-    <!-- Feature 1: Top Navigation & Menu Toggle -->
+    <!-- State-of-the-Art Feature 2: Cinematic Preloader -->
+    <div id="preloader">
+        <div class="preloader-count" id="preloader-count">00</div>
+    </div>
+
+    <div class="cursor-dot"></div>
+    <div class="scroll-progress"></div>
+    <!-- State-of-the-Art Feature 6: Global Mouse Glow -->
+    <div class="mouse-glow"></div>
+
     <nav class="top-nav">
         <a href="/" class="brand-name" data-value="MESHACH ANDO">MESHACH ANDO</a>
         <button class="menu-toggle magnetic">Menu</button>
     </nav>
 
-    <!-- Feature 1: Full Screen Overlay -->
     <div class="menu-overlay">
         <div class="menu-links">
             <a href="water-resources/">Water Resources</a>
@@ -33,22 +46,20 @@
         </div>
     </div>
 
-    <!-- Feature 11: Back to top -->
     <a href="#" class="back-to-top magnetic">
         <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h6v8h4v-8h6z"/></svg>
     </a>
 
     <main class="home-container">
-        
         <img src="assets/images/profile.jpg" alt="Meshach Ando" class="profile-pic reveal" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\'><rect width=\'150\' height=\'150\' fill=\'%23111\'/></svg>'">
         
-        <!-- Feature 7: Typewriter Intro applied here via CSS reveal -->
-        <h1 class="reveal typewriter">Hey, I'm Meshach.</h1>
+        <!-- Time-Aware Greeting -->
+        <h1 class="reveal split-text" id="dynamic-greeting">Hey, I'm Meshach.</h1>
         <hr class="centered-line reveal">
 
         <!-- About Me Section -->
         <section id="about" class="section reveal">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title split-text">About Me</h2>
             <p style="font-size: 1.1rem; max-width: 650px; margin: 0 auto; line-height: 1.8; color: var(--text-secondary);">
                 I'm a civil engineering graduate student who loves solving big physical problems with code and data. Whether it's mapping out massive stormwater systems, studying environmental impacts, or digging into geotechnical models, I spend my time bridging the gap between traditional engineering and modern programming. Take a look around!
             </p>
@@ -56,7 +67,7 @@
 
         <!-- Expertise Section -->
         <section id="expertise" class="section reveal">
-            <h2 class="section-title">What I Do</h2>
+            <h2 class="section-title split-text">What I Do</h2>
             <div class="home-menu" style="justify-content: center; margin-top: 2rem;">
                 <a href="water-resources/" class="pill-btn magnetic">Water Resources</a>
                 <a href="environmental/" class="pill-btn magnetic">Environmental</a>
@@ -67,7 +78,7 @@
 
         <!-- Technical Stack Section -->
         <section id="tech-stack" class="section reveal">
-            <h2 class="section-title">The Stack</h2>
+            <h2 class="section-title split-text">The Stack</h2>
             <div class="stack-grid-creative" style="margin-top: 2rem; text-align: left;">
                 <div class="stack-item">
                     <h3>Engineering & Design</h3>
@@ -90,9 +101,8 @@
 
         <!-- Contact Me Section -->
         <section id="contact" class="section reveal">
-            <h2 class="section-title">Let's Talk</h2>
+            <h2 class="section-title split-text">Let's Talk</h2>
             <div class="home-menu" style="justify-content: center; margin-top: 2rem;">
-                <!-- Feature 2: Magnetic SVGs -->
                 <a href="https://github.com/meshando-unf" target="_blank" rel="noopener" class="pill-btn magnetic">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                     GitHub
@@ -111,6 +121,24 @@
                 </a>
             </div>
             
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span>Civil Engineering</span>
+                    <span>Water Resources</span>
+                    <span>Environmental Modeling</span>
+                    <span>Geotechnical</span>
+                    <span>Data Science</span>
+                    <span>Hydraulics</span>
+                    <!-- Duplicate for infinite scroll -->
+                    <span>Civil Engineering</span>
+                    <span>Water Resources</span>
+                    <span>Environmental Modeling</span>
+                    <span>Geotechnical</span>
+                    <span>Data Science</span>
+                    <span>Hydraulics</span>
+                </div>
+            </div>
+
             <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8; margin-top: 4rem;">
                 Designed by Meshach Ando, Inspired by <a href="https://charanravi.com/" target="_blank" style="text-decoration: underline; opacity: 1;">charanravi.com</a><br>
                 &copy; 2026
@@ -122,3 +150,4 @@
     <script src="assets/js/main.js"></script>
 </body>
 </html>
+
