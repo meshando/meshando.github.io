@@ -428,3 +428,90 @@ body.curtain-active .cursor-ring { opacity: 0; }
   transition: transform 0.1s linear;
   will-change: transform;
 }
+
+/* --- PHASE 6 FEATURES --- */
+
+/* 5. Wireframe Protocol */
+body.wireframe-mode * {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+body.wireframe-mode {
+  background-color: #000 !important;
+}
+body.wireframe-mode img, body.wireframe-mode svg {
+  opacity: 0.1 !important;
+}
+
+/* 6. Scroll-Triggered Section Inversion */
+body.inverted-section {
+  --bg-color: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: rgba(0,0,0,0.7);
+  --accent-color: #b91c1c;
+}
+body {
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+/* 7. Magnetic Grid Dot */
+#grid-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 4px; height: 4px;
+  background-color: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.2;
+  transition: transform 0.1s linear;
+}
+
+/* 8. Energy Build-Up Hover */
+.btn.energy-hover {
+  transition: letter-spacing 3s cubic-bezier(0.25, 1, 0.5, 1), filter 3s ease, text-shadow 3s ease;
+}
+.btn.energy-hover.building {
+  letter-spacing: 0.3em;
+  filter: blur(1px);
+  text-shadow: 0 0 10px rgba(185, 28, 28, 0.8);
+}
+
+/* 9. Idle Screensaver Geometry */
+#idle-screensaver {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0,0,0,0.9);
+  z-index: 100000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+#idle-screensaver.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.wire-cube {
+  width: 100px; height: 100px;
+  border: 1px solid rgba(255,255,255,0.5);
+  animation: rotateCube 10s linear infinite;
+  transform-style: preserve-3d;
+}
+@keyframes rotateCube {
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* 10. Base64 Clipboard Encryption */
+.base64-text {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  word-break: break-all;
+}

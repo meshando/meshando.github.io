@@ -275,28 +275,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
 // --- PHASE 5 JS FEATURES ---
 
 document.addEventListener('DOMContentLoaded', () => {
 
     const logToDOM = (msg) => {
         const consoleEl = document.getElementById('dom-console');
-        if(consoleEl) consoleEl.innerText = > $msg;
+        if(consoleEl) consoleEl.innerText = `> ${msg}`;
     };
 
     // 4. Live X,Y Coordinate Tracker
     const coordTracker = document.getElementById('coord-tracker');
     document.addEventListener('mousemove', (e) => {
-        if(coordTracker) coordTracker.innerText = X:  + e.clientX.toString().padStart(4, '0') +  | Y:  + e.clientY.toString().padStart(4, '0');
+        if(coordTracker) coordTracker.innerText = `X: ${e.clientX.toString().padStart(4, '0')} | Y: ${e.clientY.toString().padStart(4, '0')}`;
     });
 
     // 3. Dynamic Noise Scaling
     let lastMouseX = 0, lastMouseY = 0;
     let noiseOpacity = 0.04;
-    const noiseFilter = document.querySelector('body::after'); // Hard to access pseudo element directly via JS for opacity, so we'll manipulate a custom property if we had one.
-    // Instead, we can dynamically add/remove a style tag, or inject a real div for noise.
-    // Since we used pseudo-element, we'll skip direct opacity manipulation and manipulate the filter frequency via a new SVG element if needed.
-    // Actually, CSS custom properties are better. Let's set a CSS var on body.
     document.body.style.setProperty('--noise-opacity', '0.04');
     
     document.addEventListener('mousemove', (e) => {
@@ -306,36 +303,37 @@ document.addEventListener('DOMContentLoaded', () => {
         let targetOpacity = 0.04 + Math.min(speed / 1000, 0.1);
         noiseOpacity = lerp(noiseOpacity, targetOpacity, 0.1);
         
-        // Only log significantly to console to avoid spam
-        if(Math.random() < 0.05) logToDOM(Mouse velocity: $speed.toFixed(2));
+        if(Math.random() < 0.05) logToDOM(`Mouse velocity: ${speed.toFixed(2)}`);
     });
 
     // 1. Cursor Reading Progress Ring
     const ring = document.createElement('div');
     ring.className = 'cursor-ring';
-    ring.innerHTML = <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15"></circle></svg>;
+    ring.innerHTML = `<svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15"></circle></svg>`;
     document.body.appendChild(ring);
     const circle = ring.querySelector('circle');
     const radius = circle.r.baseVal.value;
     const circumference = radius * 2 * Math.PI;
-    circle.style.strokeDasharray = ${circumference} ;
+    circle.style.strokeDasharray = `${circumference} ${circumference}`;
     circle.style.strokeDashoffset = circumference;
 
     let rX = window.innerWidth / 2, rY = window.innerHeight / 2;
     function renderRing() {
-        rX = lerp(rX, mouseX, 0.2);
-        rY = lerp(rY, mouseY, 0.2);
-        ring.style.left = rX + 'px';
-        ring.style.top = rY + 'px';
+        if(typeof mouseX !== 'undefined' && typeof mouseY !== 'undefined') {
+            rX = lerp(rX, mouseX, 0.2);
+            rY = lerp(rY, mouseY, 0.2);
+            ring.style.left = rX + 'px';
+            ring.style.top = rY + 'px';
+        }
         requestAnimationFrame(renderRing);
     }
     renderRing();
 
     window.addEventListener('scroll', () => {
-        const scrollPercent = (window.scrollY) / (document.body.scrollHeight - window.innerHeight);
+        const scrollPercent = (window.scrollY) / (document.body.scrollHeight - window.innerHeight || 1);
         const offset = circumference - scrollPercent * circumference;
         circle.style.strokeDashoffset = offset;
-        logToDOM(Scroll Progress:  + Math.round(scrollPercent * 100) + %);
+        logToDOM(`Scroll Progress: ${Math.round(scrollPercent * 100)}%`);
     });
 
     // 2. Scroll Velocity Element Skewing
@@ -349,16 +347,15 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScrollY = window.scrollY;
         scrollVelocity = lerp(scrollVelocity, delta, 0.5);
         
-        const skewAmount = Math.max(Math.min(scrollVelocity * 0.05, 5), -5); // clamp between -5 and 5 deg
+        const skewAmount = Math.max(Math.min(scrollVelocity * 0.05, 5), -5);
         
         skewTargets.forEach(el => {
-            el.style.transform = skewY($skewAmountdeg);
+            el.style.transform = `skewY(${skewAmount}deg)`;
         });
         
-        // Reset skew when scrolling stops
         clearTimeout(window.skewTimeout);
         window.skewTimeout = setTimeout(() => {
-            skewTargets.forEach(el => { el.style.transform = skewY(0deg); });
+            skewTargets.forEach(el => { el.style.transform = `skewY(0deg)`; });
             scrollVelocity = 0;
         }, 150);
     });
@@ -366,8 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 15. Secret "Red Alert" Theme
     let clickCount = 0;
     document.addEventListener('click', (e) => {
-        // Only trigger on empty space (body or container)
-        if(e.target.tagName.toLowerCase() === 'div' || e.target.tagName.toLowerCase() === 'main' || e.target.tagName.toLowerCase() === 'section') {
+        if(e.target.tagName.toLowerCase() === 'div' || e.target.tagName.toLowerCase() === 'main' || e.target.tagName.toLowerCase() === 'section' || e.target.tagName.toLowerCase() === 'body') {
             clickCount++;
             if(clickCount === 2) {
                 document.body.classList.toggle('red-alert-theme');
@@ -424,12 +420,12 @@ document.addEventListener('DOMContentLoaded', () => {
             let batteryStr = 'PWR: AC';
             if(navigator.getBattery) {
                 const bat = await navigator.getBattery();
-                batteryStr = BAT:  + Math.round(bat.level * 100) + %;
+                batteryStr = `BAT: ${Math.round(bat.level * 100)}%`;
             }
-            telemetryEl.innerText = NET: $connType | $batteryStr;
+            telemetryEl.innerText = `NET: ${connType} | ${batteryStr}`;
         };
         updateTelemetry();
-        setInterval(updateTelemetry, 60000); // Check every minute
+        setInterval(updateTelemetry, 60000);
     }
 
     // 10. Magnetized Brand Typography
@@ -454,25 +450,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(dist < 50) {
                     const angle = Math.atan2(center.y - e.clientY, center.x - e.clientX);
                     const push = (50 - dist) * 0.2;
-                    span.style.transform = 	ranslate( + Math.cos(angle)*push + px,  + Math.sin(angle)*push + px);
+                    span.style.transform = `translate(${Math.cos(angle)*push}px, ${Math.sin(angle)*push}px)`;
                 } else {
-                    span.style.transform = 	ranslate(0,0);
+                    span.style.transform = `translate(0,0)`;
                 }
             });
         });
         brand.addEventListener('mouseleave', () => {
-            brand.querySelectorAll('span').forEach(span => span.style.transform = 	ranslate(0,0));
+            brand.querySelectorAll('span').forEach(span => span.style.transform = `translate(0,0)`);
         });
     }
 
     // 14. Staggered RGB Glitch
     document.querySelectorAll('a, button').forEach(el => {
         el.addEventListener('click', function(e) {
-            // Only glitch if it's not a mailto or external link
             if(!this.href || this.href.includes('mailto:') || this.target === '_blank') return;
-            const targetText = this.innerText;
             this.classList.add('rgb-glitch');
-            logToDOM(Glitch initializing for routing...);
+            logToDOM(`Glitch initializing for routing...`);
             setTimeout(() => this.classList.remove('rgb-glitch'), 300);
         });
     });
@@ -481,13 +475,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.stack-item').forEach(item => {
         const p = item.querySelector('p');
         if(p) {
-            const originalText = p.innerText;
             const originalHTML = p.innerHTML;
-            const title = item.querySelector('h3').innerText.toLowerCase().replace(/ /g, '_');
+            let titleEl = item.querySelector('h3');
+            const title = titleEl ? titleEl.innerText.toLowerCase().replace(/ /g, '_') : 'skill';
             
             item.addEventListener('mouseenter', () => {
-                logToDOM(Decompiling $title stack...);
-                p.innerHTML = <span class="pseudo-code-text">def execute_$title():\n  while True:\n    optimize()\n    return True</span>;
+                logToDOM(`Decompiling ${title} stack...`);
+                p.innerHTML = `<span class="pseudo-code-text">def execute_${title}():\n  while True:\n    optimize()\n    return True</span>`;
             });
             item.addEventListener('mouseleave', () => {
                 p.innerHTML = originalHTML;
@@ -498,8 +492,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 7. Hold-to-Copy Email Interaction
     const emailBtn = document.querySelector('a[href^="mailto:"]');
     if(emailBtn) {
-        // Prevent default mailto action for this demo feature, or combine it.
-        // Let's combine: Click to mail, HOLD to copy.
         const progress = document.createElement('div');
         progress.className = 'hold-progress';
         emailBtn.appendChild(progress);
@@ -510,6 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let isHolding = false;
         
         const startHold = (e) => {
+            if (e.button !== 0) return; // Only left click
             isHolding = true;
             fillWidth = 0;
             logToDOM('Extracting email payload...');
@@ -524,8 +517,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     logToDOM('Email payload successfully copied to clipboard.');
                     setTimeout(() => {
                         emailBtn.classList.remove('copied');
-                        emailBtn.innerHTML = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l11.985-8.71C23.575 2.276 21.91 1 20 1H4C2.09 1 .425 2.276.015 4.003L12 12.713zM24 5.922l-12 8.715L0 5.922V20c0 1.657 1.343 3 3 3h18c1.657 0 3-1.343 3-3V5.922z"/></svg> Email<div class="hold-progress"></div>;
+                        emailBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l11.985-8.71C23.575 2.276 21.91 1 20 1H4C2.09 1 .425 2.276.015 4.003L12 12.713zM24 5.922l-12 8.715L0 5.922V20c0 1.657 1.343 3 3 3h18c1.657 0 3-1.343 3-3V5.922z"/></svg> Email<div class="hold-progress"></div>`;
                         progress.style.width = '0%';
+                        fillWidth = 0;
                     }, 2000);
                 }
             }, 50);
@@ -544,21 +538,18 @@ document.addEventListener('DOMContentLoaded', () => {
         emailBtn.addEventListener('mouseup', stopHold);
         emailBtn.addEventListener('mouseleave', stopHold);
         emailBtn.addEventListener('click', (e) => {
-            if(fillWidth >= 100) e.preventDefault(); // prevent mailto if they copied
+            if(fillWidth >= 100) e.preventDefault();
         });
     }
 
     // 13. Page Slice "Curtain" Transition
-    // Override the previous smooth transition
     const curtain = document.createElement('div');
     curtain.className = 'curtain';
     curtain.innerHTML = '<div class="curtain-slice"></div><div class="curtain-slice"></div><div class="curtain-slice"></div>';
     document.body.appendChild(curtain);
 
     const oldLinks = document.querySelectorAll('a[href]:not([target="_blank"]):not([href^="mailto:"]):not([href^="#"])');
-    // We already added a listener earlier, but we can intercept here by adding the curtain-active class
     oldLinks.forEach(link => {
-        // Remove old listener if possible, but easier to just let it run and add our class which will cover it
         link.addEventListener('click', e => {
             if(link.href.includes(window.location.hostname) || !link.href.startsWith('http')) {
                 document.body.classList.add('curtain-active');
@@ -566,4 +557,188 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
+
+
+// --- PHASE 6 JS FEATURES ---
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Helper for DOM console
+    const logToDOM = (msg) => {
+        const consoleEl = document.getElementById('dom-console');
+        if(consoleEl) consoleEl.innerText = `> ${msg}`;
+    };
+
+    // 1. Scramble-Decode Text Reveal
+    const scrambleLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
+    document.querySelectorAll('.split-text, h1, h2, h3').forEach(el => {
+        const originalText = el.innerText;
+        el.addEventListener('mouseenter', () => {
+            if(el.isScrambling) return;
+            el.isScrambling = true;
+            let iterations = 0;
+            const maxIterations = 10;
+            const interval = setInterval(() => {
+                el.innerText = originalText.split('').map((char, index) => {
+                    if(char === ' ' || char === '\n') return char;
+                    if(index < iterations / maxIterations * originalText.length) return originalText[index];
+                    return scrambleLetters[Math.floor(Math.random() * scrambleLetters.length)];
+                }).join('');
+                iterations++;
+                if(iterations > maxIterations) {
+                    clearInterval(interval);
+                    el.innerText = originalText;
+                    el.isScrambling = false;
+                }
+            }, 30);
+        });
+    });
+
+    // 2. Device Gyroscope Parallax
+    if(window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', (event) => {
+            const tiltX = Math.round(event.gamma || 0); // Left-to-right
+            const tiltY = Math.round(event.beta || 0);  // Front-to-back
+            const maxTilt = 20;
+            const x = Math.max(Math.min(tiltX / maxTilt, 1), -1) * 10;
+            const y = Math.max(Math.min((tiltY - 45) / maxTilt, 1), -1) * 10;
+            document.body.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        });
+    }
+
+    // 3. Synthesized Sonar Ping (Web Audio API)
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx;
+    const menuBtn = document.querySelector('.menu-toggle');
+    if(menuBtn) {
+        menuBtn.addEventListener('mouseenter', () => {
+            if(!audioCtx) audioCtx = new AudioContext();
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.5);
+            gain.gain.setValueAtTime(0, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.5);
+        });
+    }
+
+    // 4. Dynamic Proximity Letter-Spacing
+    const headers = document.querySelectorAll('.section-title');
+    document.addEventListener('mousemove', (e) => {
+        headers.forEach(header => {
+            const rect = header.getBoundingClientRect();
+            const center = { x: rect.left + rect.width/2, y: rect.top + rect.height/2 };
+            const dist = Math.sqrt(Math.pow(e.clientX - center.x, 2) + Math.pow(e.clientY - center.y, 2));
+            if(dist < 200) {
+                const space = 0 + ((200 - dist) / 200) * 0.2; // max 0.2em
+                header.style.letterSpacing = `${space}em`;
+            } else {
+                header.style.letterSpacing = '0em';
+            }
+        });
+    });
+
+    // 5. Wireframe Protocol (Easter Egg 2)
+    let keys2 = '';
+    const secretCode2 = 'wire';
+    document.addEventListener('keydown', (e) => {
+        keys2 += e.key.toLowerCase();
+        if(keys2.length > secretCode2.length) keys2 = keys2.substr(1);
+        if(keys2 === secretCode2) {
+            document.body.classList.toggle('wireframe-mode');
+            logToDOM(document.body.classList.contains('wireframe-mode') ? 'SYS: WIREFRAME ARCHITECTURE LOADED.' : 'SYS: STANDARD RENDER RESTORED.');
+        }
+    });
+
+    // 6. Scroll-Triggered Section Inversion
+    const stackGrid = document.querySelector('.stack-grid-creative');
+    if(stackGrid && window.IntersectionObserver) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    document.body.classList.add('inverted-section');
+                    logToDOM('Visual inversion threshold reached.');
+                } else {
+                    document.body.classList.remove('inverted-section');
+                }
+            });
+        }, { threshold: 0.5 });
+        observer.observe(stackGrid);
+    }
+
+    // 7. Magnetic Grid Snapping
+    const gridDot = document.createElement('div');
+    gridDot.id = 'grid-dot';
+    document.body.appendChild(gridDot);
+    document.addEventListener('mousemove', (e) => {
+        const snap = 50; // 50px grid
+        const x = Math.round(e.clientX / snap) * snap;
+        const y = Math.round(e.clientY / snap) * snap;
+        gridDot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    });
+
+    // 8. Energy Build-Up Hover
+    const resumeBtn = document.querySelector('.btn[target="_blank"]');
+    if(resumeBtn) {
+        resumeBtn.classList.add('energy-hover');
+        resumeBtn.addEventListener('mouseenter', () => {
+            resumeBtn.classList.add('building');
+        });
+        resumeBtn.addEventListener('mouseleave', () => {
+            resumeBtn.classList.remove('building');
+        });
+    }
+
+    // 9. Idle Screensaver Geometry
+    const screensaver = document.createElement('div');
+    screensaver.id = 'idle-screensaver';
+    screensaver.innerHTML = '<div class="wire-cube"></div>';
+    document.body.appendChild(screensaver);
+    let idleTimer;
+    const resetIdle = () => {
+        screensaver.classList.remove('active');
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+            screensaver.classList.add('active');
+            logToDOM('SYS: IDLE TIMEOUT. SCREENSAVER ENGAGED.');
+        }, 30000); // 30 seconds
+    };
+    document.addEventListener('mousemove', resetIdle);
+    document.addEventListener('keydown', resetIdle);
+    resetIdle();
+
+    // 10. Base64 Clipboard Encryption Override
+    // Find the hold progress from Phase 5 and modify it slightly.
+    const mailBtn = document.querySelector('a[href^="mailto:"]');
+    if(mailBtn) {
+        // We will intercept the Phase 5 logic by adding a MutationObserver on the button's class,
+        // or just re-binding the event if possible. Since Phase 5 logic is tightly coupled, 
+        // we'll listen for the 'copied' class being added.
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class' && mailBtn.classList.contains('copied')) {
+                    if(!mailBtn.isDecrypting) {
+                        mailBtn.isDecrypting = true;
+                        const email = 'meshachando.apply@gmail.com';
+                        const b64 = btoa(email);
+                        mailBtn.innerHTML = `<span class="base64-text">${b64}</span>`;
+                        setTimeout(() => {
+                            mailBtn.innerHTML = 'COPIED TO CLIPBOARD';
+                        }, 500);
+                        setTimeout(() => { mailBtn.isDecrypting = false; }, 2000); // Reset lock
+                    }
+                }
+            });
+        });
+        observer.observe(mailBtn, { attributes: true });
+    }
 });
