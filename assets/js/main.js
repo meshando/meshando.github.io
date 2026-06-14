@@ -742,3 +742,45 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(mailBtn, { attributes: true });
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Phase 7: ToC Scroll Spy
+    const sections = document.querySelectorAll('section, main');
+    const tocContainer = document.querySelector('.toc-sidebar');
+    
+    if(tocContainer && sections.length > 0) {
+        sections.forEach((sec, idx) => {
+            sec.id = sec.id || 'section-' + idx;
+            const dot = document.createElement('div');
+            dot.className = 'toc-dot';
+            dot.dataset.target = sec.id;
+            
+            dot.addEventListener('click', () => {
+                sec.scrollIntoView({ behavior: 'smooth' });
+            });
+            tocContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.toc-dot');
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.5 };
+        
+        const tocObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    dots.forEach(d => d.classList.remove('active'));
+                    const activeDot = document.querySelector(`.toc-dot[data-target="${entry.target.id}"]`);
+                    if(activeDot) activeDot.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(sec => tocObserver.observe(sec));
+    }
+    
+    // Ensure mouse doesn't get stuck hidden
+    document.addEventListener('mouseenter', () => {
+        document.querySelector('.cursor-dot').style.opacity = '1';
+        document.querySelector('.cursor-ring').style.opacity = '1';
+    });
+});

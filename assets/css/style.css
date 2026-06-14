@@ -515,3 +515,71 @@ body {
   font-size: 0.7rem;
   word-break: break-all;
 }
+
+/* --- PHASE 7 UX POLISH --- */
+
+/* Enhanced Menu Overlay */
+.menu-overlay {
+    backdrop-filter: blur(40px) !important;
+    -webkit-backdrop-filter: blur(40px) !important;
+    background-color: rgba(0,0,0,0.7) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+.menu-links {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+.menu-links a {
+    font-size: 3.5rem !important;
+    margin-bottom: 2rem !important;
+    text-align: center;
+    width: 100%;
+}
+
+/* Minimalist ToC Sidebar */
+.toc-sidebar {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 999;
+}
+.toc-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-secondary);
+    border-radius: 50%;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.toc-dot.active {
+    opacity: 1;
+    transform: scale(1.5);
+    background-color: var(--accent-color);
+}
+.toc-dot:hover {
+    opacity: 0.8;
+    transform: scale(1.5);
+}
+
+/* Fix Cursor Disappearance */
+.cursor-ring, .cursor-dot {
+    mix-blend-mode: normal !important;
+    z-index: 2147483647 !important;
+}
+body.page-transitioning .cursor-ring,
+body.curtain-active .cursor-ring {
+    opacity: 1 !important; /* Force visible */
+}
