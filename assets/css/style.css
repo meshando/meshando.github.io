@@ -2,9 +2,14 @@
   --bg-color: #000000; /* Pure black */
   --text-primary: #ffffff; /* Pure white */
   --text-secondary: #cccccc; /* Bright, legible grey */
-  --accent-color: #ffffff; /* Hover links also white, or pure white */
+  --accent-color: #b91c1c; /* Blood red */
   --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --radius: 0px; /* No curved borders if there are no borders */
+  --radius: 50px; /* Elliptical pill-shape */
+}
+
+::selection {
+  background-color: var(--accent-color);
+  color: #ffffff;
 }
 
 body {
@@ -136,6 +141,38 @@ a:hover {
 .section-title {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
+  color: var(--accent-color);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.2rem;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 10%; /* Start a bit from the left */
+  bottom: 0;
+  width: 100%; /* Extends past the right edge by 10% */
+  height: 2px;
+  background-color: #ffffff;
+}
+
+/* Profiles & Layouts */
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border: 1px solid #333;
+}
+
+.centered-line {
+  width: 40px;
+  height: 1px;
+  background-color: var(--text-secondary);
+  border: none;
+  margin: 2rem auto;
 }
 
 /* Grid & Project Layout */
@@ -143,6 +180,32 @@ a:hover {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
+}
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid #444;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+.pill-btn:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.pill-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
 }
 
 .project-card {
