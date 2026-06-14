@@ -1,118 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meshach Ando | Portfolio</title>
-    <meta name="description" content="Portfolio of Meshach Ando - Civil, Environmental, Geotechnical Engineering & Research.">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meshach Ando</title>
+    <meta name="description" content="Portfolio of Meshach Ando - Civil & Environmental Engineering.">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-    <style>
-        /* Homepage specific styles for extreme centering */
-        .home-container {
-            align-items: center;
-            text-align: center;
-        }
-        .home-container h1 {
-            font-size: 2.5rem;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
 </head>
 <body>
-    <main class="home-container reveal">
-        <!-- Profile Picture -->
-        <img src="assets/images/profile.jpg" alt="Meshach Ando" class="profile-pic" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMTUwIDE1MCI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTTAgMGgxNTB2MTUwSDB6Ii8+PHRleHQgeD0iNzUiIHk9Ijc1IiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPk1BPC90ZXh0Pjwvc3ZnPg=='">
-        
-        <h1>Meshach Ando</h1>
-        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.6;">
-            Civil engineering graduate student, with a lot of experience modeling engineering infrastructure and engineering big data analysis.
-        </p>
+    <!-- Feature 3: Custom Cursor -->
+    <div class="cursor-dot"></div>
+    
+    <!-- Feature 5: Scroll Progress -->
+    <div class="scroll-progress"></div>
 
-        <hr class="centered-line">
+    <!-- Feature 1: Top Navigation & Menu Toggle -->
+    <nav class="top-nav">
+        <a href="/" class="brand-name" data-value="MESHACH ANDO">MESHACH ANDO</a>
+        <button class="menu-toggle magnetic">Menu</button>
+    </nav>
 
-        <!-- Navigation Tabs -->
-        <div class="home-menu" style="margin-bottom: 4rem; justify-content: center;">
-            <a href="#about" class="pill-btn">About Me</a>
-            <a href="#expertise" class="pill-btn">Expertise</a>
-            <a href="#contact" class="pill-btn">Contact Me</a>
+    <!-- Feature 1: Full Screen Overlay -->
+    <div class="menu-overlay">
+        <div class="menu-links">
+            <a href="water-resources/">Water Resources</a>
+            <a href="environmental/">Environmental</a>
+            <a href="geotech/">Geotechnical</a>
+            <a href="research/">Research</a>
+            <a href="gallery/">Gallery</a>
+            <a href="news/">News</a>
         </div>
+    </div>
+
+    <!-- Feature 11: Back to top -->
+    <a href="#" class="back-to-top magnetic">
+        <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h6v8h4v-8h6z"/></svg>
+    </a>
+
+    <main class="home-container">
+        
+        <img src="assets/images/profile.jpg" alt="Meshach Ando" class="profile-pic reveal" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\'><rect width=\'150\' height=\'150\' fill=\'%23111\'/></svg>'">
+        
+        <!-- Feature 7: Typewriter Intro applied here via CSS reveal -->
+        <h1 class="reveal typewriter">Hey, I'm Meshach.</h1>
+        <hr class="centered-line reveal">
 
         <!-- About Me Section -->
         <section id="about" class="section reveal">
             <h2 class="section-title">About Me</h2>
             <p style="font-size: 1.1rem; max-width: 650px; margin: 0 auto; line-height: 1.8; color: var(--text-secondary);">
-                I am a civil engineering graduate student, with a lot of experience modeling engineering infrastructure and engineering big data analysis. I specialize in environmental systems, water resources modeling, and geotechnical methods, leveraging modern programming to solve complex physical problems.
+                I'm a civil engineering graduate student who loves solving big physical problems with code and data. Whether it's mapping out massive stormwater systems, studying environmental impacts, or digging into geotechnical models, I spend my time bridging the gap between traditional engineering and modern programming. Take a look around!
             </p>
         </section>
 
         <!-- Expertise Section -->
         <section id="expertise" class="section reveal">
-            <h2 class="section-title">Expertise</h2>
+            <h2 class="section-title">What I Do</h2>
             <div class="home-menu" style="justify-content: center; margin-top: 2rem;">
-                <a href="water-resources/" class="pill-btn">Water Resources</a>
-                <a href="environmental/" class="pill-btn">Environmental</a>
-                <a href="geotech/" class="pill-btn">Geotechnical</a>
-                <a href="research/" class="pill-btn">Research</a>
+                <a href="water-resources/" class="pill-btn magnetic">Water Resources</a>
+                <a href="environmental/" class="pill-btn magnetic">Environmental</a>
+                <a href="geotech/" class="pill-btn magnetic">Geotechnical</a>
+                <a href="research/" class="pill-btn magnetic">Research</a>
             </div>
         </section>
 
         <!-- Technical Stack Section -->
         <section id="tech-stack" class="section reveal">
-            <h2 class="section-title">Technical Stack</h2>
-            <div class="stack-grid-creative" style="margin-top: 2rem;">
+            <h2 class="section-title">The Stack</h2>
+            <div class="stack-grid-creative" style="margin-top: 2rem; text-align: left;">
                 <div class="stack-item">
                     <h3>Engineering & Design</h3>
-                    <p>HEC-RAS, EPA SWMM, Civil 3D, Autodesk Storm and Sanitary Analysis</p>
+                    <p>HEC-RAS, EPA SWMM, Civil 3D, and Autodesk Storm & Sanitary Analysis. The heavy lifters.</p>
                 </div>
                 <div class="stack-item">
                     <h3>Geospatial Intelligence</h3>
-                    <p>ArcGIS Pro, Spatial Analysis, Map Production, Georeferencing</p>
+                    <p>ArcGIS Pro. Because mapping spatial data properly changes everything.</p>
                 </div>
                 <div class="stack-item">
                     <h3>Data & Automation</h3>
-                    <p>Python, Excel/VBA, Data Cleaning, Visualization, Scripting</p>
+                    <p>Python and Excel/VBA. I build scripts to clean data and automate the boring stuff.</p>
                 </div>
                 <div class="stack-item">
                     <h3>Research Modeling</h3>
-                    <p>FOD Models, SEM, Satellite Observations, Gaussian Dispersion</p>
+                    <p>FOD Models, SEM, Satellite Obs, and Gaussian Dispersion for atmospheric analysis.</p>
                 </div>
             </div>
         </section>
 
         <!-- Contact Me Section -->
         <section id="contact" class="section reveal">
-            <h2 class="section-title">Contact Me</h2>
+            <h2 class="section-title">Let's Talk</h2>
             <div class="home-menu" style="justify-content: center; margin-top: 2rem;">
-                <a href="https://github.com/meshando-unf" target="_blank" rel="noopener" class="pill-btn">
+                <!-- Feature 2: Magnetic SVGs -->
+                <a href="https://github.com/meshando-unf" target="_blank" rel="noopener" class="pill-btn magnetic">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                     GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/meshachando" target="_blank" rel="noopener" class="pill-btn">
+                <a href="https://www.linkedin.com/in/meshachando" target="_blank" rel="noopener" class="pill-btn magnetic">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     LinkedIn
                 </a>
-                <a href="mailto:meshachando.apply@gmail.com" class="pill-btn">
+                <a href="mailto:meshachando.apply@gmail.com" class="pill-btn magnetic">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l11.985-8.71C23.575 2.276 21.91 1 20 1H4C2.09 1 .425 2.276.015 4.003L12 12.713zM24 5.922l-12 8.715L0 5.922V20c0 1.657 1.343 3 3 3h18c1.657 0 3-1.343 3-3V5.922z"/></svg>
                     Email
                 </a>
-                <a href="assets/docs/Meshach_Ando_Full_CV.pdf" target="_blank" class="pill-btn">
+                <a href="assets/docs/Meshach_Ando_Full_CV.pdf" target="_blank" class="pill-btn magnetic">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                     Full CV
                 </a>
             </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="minimal-footer" style="flex-direction: column; align-items: center; text-align: center; border-top: 1px solid #222; margin-top: 4rem; padding-top: 2rem;">
-            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8;">
+            
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8; margin-top: 4rem;">
                 Designed by Meshach Ando, Inspired by <a href="https://charanravi.com/" target="_blank" style="text-decoration: underline; opacity: 1;">charanravi.com</a><br>
                 &copy; 2026
             </p>
-        </footer>
+        </section>
+
     </main>
+
     <script src="assets/js/main.js"></script>
 </body>
 </html>
