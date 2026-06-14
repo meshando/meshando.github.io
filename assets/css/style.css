@@ -1,11 +1,10 @@
 :root {
-  --bg-color: #111111; /* Deep charcoal black */
+  --bg-color: #000000; /* Pure black */
   --text-primary: #ffffff; /* Pure white */
-  --text-secondary: #888888; /* Grey for subtle text */
-  --accent-color: #b91c1c; /* Blood red */
-  --border-color: #2a2a2a; /* Subtle dark border */
+  --text-secondary: #cccccc; /* Bright, legible grey */
+  --accent-color: #ffffff; /* Hover links also white, or pure white */
   --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --radius: 12px; /* Curved corners */
+  --radius: 0px; /* No curved borders if there are no borders */
 }
 
 body {
@@ -24,13 +23,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   margin-top: 0;
   letter-spacing: -0.01em;
+  color: var(--text-primary);
 }
 
 .chapter-number {
   font-size: 3rem;
   line-height: 1;
-  color: var(--text-secondary);
-  opacity: 0.3;
+  color: var(--text-primary);
+  opacity: 0.2;
   margin-bottom: 1rem;
   font-weight: 400;
 }
@@ -38,45 +38,41 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: var(--text-primary);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease;
+  opacity: 0.8;
 }
 
 a:hover {
-  color: var(--accent-color);
+  opacity: 1;
+  text-decoration: underline;
 }
 
 .btn {
   display: inline-block;
-  border: 1px solid var(--border-color);
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  color: var(--text-secondary);
-  border-radius: var(--radius);
-  transition: all 0.2s ease;
+  padding: 0;
+  font-size: 0.95rem;
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--text-primary);
+  transition: opacity 0.2s ease;
+  opacity: 0.8;
 }
 
 .btn:hover {
-  border-color: var(--accent-color);
-  color: var(--accent-color);
+  opacity: 1;
+  text-decoration: none;
 }
 
 /* Layout */
 .container {
-  max-width: 900px; /* Thinner container for minimalist feel */
+  max-width: 800px; /* Tighter container for text-heavy minimalism */
   margin: 0 auto;
   padding: 2rem;
 }
 
 .header-nav {
-  padding: 1rem 2rem;
-  border-bottom: 1px solid var(--border-color);
-  position: sticky;
-  top: 0;
-  background-color: rgba(17, 17, 17, 0.95); /* Match charcoal */
-  backdrop-filter: blur(8px);
-  z-index: 100;
+  padding: 2rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,6 +84,7 @@ a:hover {
   font-weight: 600;
   font-size: 1.1rem;
   letter-spacing: -0.01em;
+  opacity: 1;
 }
 
 .header-nav .nav-links {
@@ -98,37 +95,38 @@ a:hover {
 
 .header-nav .nav-links a {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
+  opacity: 0.6;
 }
 
 .header-nav .nav-links a:hover {
-  color: var(--text-primary);
+  opacity: 1;
+  text-decoration: none;
 }
 
 /* Hero Section */
 .hero {
   padding-top: 4rem;
   padding-bottom: 3rem;
-  border-bottom: 1px solid var(--border-color);
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  line-height: 1.2;
+  font-size: 3rem;
+  line-height: 1.1;
   margin-bottom: 1rem;
 }
 
 .hero .subtitle {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  opacity: 0.8;
   margin-bottom: 2rem;
   line-height: 1.5;
 }
 
 /* Sections */
 .section {
-  padding: 4rem 0;
-  border-bottom: 1px solid var(--border-color);
+  padding: 3rem 0;
 }
 
 .section-header {
@@ -137,57 +135,54 @@ a:hover {
 
 .section-title {
   font-size: 1.8rem;
+  margin-bottom: 1.5rem;
 }
 
 /* Grid & Project Layout */
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .project-card {
-  border: 1px solid var(--border-color);
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  background-color: #181818; /* Slightly lighter charcoal */
-  border-radius: var(--radius);
-  transition: border-color 0.2s ease;
-}
-
-.project-card:hover {
-  border-color: #444;
 }
 
 .project-card .project-number {
-  font-size: 1.2rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+  opacity: 0.5;
+  margin-bottom: 0.25rem;
   font-weight: 400;
 }
 
 .project-card .project-title {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 0.5rem;
+  line-height: 1.3;
 }
 
 .project-card .project-stats {
   margin-bottom: 1rem;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  opacity: 0.6;
 }
 
 .project-card .project-desc {
   flex-grow: 1;
   margin-bottom: 1.5rem;
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .project-card .project-tech {
-  font-size: 0.8rem;
-  color: var(--accent-color);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  opacity: 0.5;
 }
 
 /* Home Layout */
@@ -196,120 +191,120 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .home-container h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
+  font-size: 4rem;
+  margin-bottom: 1rem;
   font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .home-container h2 {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   color: var(--text-secondary);
   margin-bottom: 3rem;
   font-weight: 400;
+  line-height: 1.5;
 }
 
 .home-menu {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .home-menu a {
-  font-size: 1rem;
-  padding: 0.5rem 1.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  color: var(--text-secondary);
-  background-color: #181818;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  opacity: 0.8;
 }
 
 .home-menu a:hover {
-  color: var(--text-primary);
-  border-color: var(--text-primary);
+  opacity: 1;
+  text-decoration: underline;
 }
 
 /* Stack Section */
 .stack-group {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .stack-group h3 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
 
 .stack-group p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-secondary);
+}
+
+.stack-group strong {
+  color: var(--text-primary);
 }
 
 /* Research Highlights Box */
 .research-highlight-box {
-  border: 1px solid var(--border-color);
-  padding: 2rem;
-  background-color: #181818;
-  border-radius: var(--radius);
-}
-
-.research-highlight-box h3 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+  padding: 0;
 }
 
 .research-highlight-box ul {
   list-style: none;
   padding: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .research-highlight-box li {
-  margin-bottom: 0.5rem;
-  padding-left: 1rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
   position: relative;
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .research-highlight-box li::before {
-  content: "•";
+  content: "—";
   position: absolute;
   left: 0;
-  color: var(--accent-color);
+  color: var(--text-primary);
+  opacity: 0.5;
 }
 
 /* Minimal Footer */
 .minimal-footer {
-  padding: 2rem 0;
+  padding: 3rem 0;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 2rem;
-  border-top: 1px solid var(--border-color);
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 .minimal-footer a {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  opacity: 0.6;
 }
 
 .minimal-footer a:hover {
-  color: var(--text-primary);
+  opacity: 1;
+  text-decoration: none;
 }
 
 /* Animations */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
+  transform: translateY(10px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.active {
@@ -319,9 +314,8 @@ a:hover {
 
 /* Mobile */
 @media (max-width: 768px) {
-  .grid-2 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; gap: 2.5rem; }
   .header-nav { flex-direction: column; align-items: flex-start; }
-  .header-nav .nav-links { gap: 0.75rem; }
-  .home-menu { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
-  .home-menu a { display: block; width: 100%; }
+  .header-nav .nav-links { gap: 1rem; }
+  .home-container h1 { font-size: 3rem; }
 }
