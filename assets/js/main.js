@@ -318,16 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     circle.style.strokeDashoffset = circumference;
 
     let rX = window.innerWidth / 2, rY = window.innerHeight / 2;
-    function renderRing() {
-        if(typeof mouseX !== 'undefined' && typeof mouseY !== 'undefined') {
-            rX = lerp(rX, mouseX, 0.2);
-            rY = lerp(rY, mouseY, 0.2);
-            ring.style.left = rX + 'px';
-            ring.style.top = rY + 'px';
-        }
-        requestAnimationFrame(renderRing);
-    }
-    renderRing();
+    // Render ring removed
 
     window.addEventListener('scroll', () => {
         const scrollPercent = (window.scrollY) / (document.body.scrollHeight - window.innerHeight || 1);
@@ -595,56 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Device Gyroscope Parallax
-    if(window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', (event) => {
-            const tiltX = Math.round(event.gamma || 0); // Left-to-right
-            const tiltY = Math.round(event.beta || 0);  // Front-to-back
-            const maxTilt = 20;
-            const x = Math.max(Math.min(tiltX / maxTilt, 1), -1) * 10;
-            const y = Math.max(Math.min((tiltY - 45) / maxTilt, 1), -1) * 10;
-            document.body.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-        });
-    }
-
-    // 3. Synthesized Sonar Ping (Web Audio API)
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    let audioCtx;
-    const menuBtn = document.querySelector('.menu-toggle');
-    if(menuBtn) {
-        menuBtn.addEventListener('mouseenter', () => {
-            if(!audioCtx) audioCtx = new AudioContext();
-            if(audioCtx.state === 'suspended') audioCtx.resume();
-            
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.5);
-            gain.gain.setValueAtTime(0, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
-            
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.5);
-        });
-    }
-
-    // 4. Dynamic Proximity Letter-Spacing
-    const headers = document.querySelectorAll('.section-title');
-    document.addEventListener('mousemove', (e) => {
-        headers.forEach(header => {
-            const rect = header.getBoundingClientRect();
-            const center = { x: rect.left + rect.width/2, y: rect.top + rect.height/2 };
-            const dist = Math.sqrt(Math.pow(e.clientX - center.x, 2) + Math.pow(e.clientY - center.y, 2));
-            if(dist < 200) {
-                const space = 0 + ((200 - dist) / 200) * 0.2; // max 0.2em
-                header.style.letterSpacing = `${space}em`;
-            } else {
-                header.style.letterSpacing = '0em';
-            }
-        });
+    // Gyroscope parallax removed for Phase 8 architecture fix\n);
     });
 
     // 5. Wireframe Protocol (Easter Egg 2)
