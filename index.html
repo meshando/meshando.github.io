@@ -80,20 +80,20 @@
             <div class="stack-grid-creative" style="margin-top: 2rem; text-align: left;">
                 <div class="stack-item">
                     <h3>Engineering & Design</h3>
-                    <p>HEC-RAS, EPA SWMM, Civil 3D, and Autodesk Storm & Sanitary Analysis.</p>
-                </div>
+                    <p><span class="eng-tooltip" data-tooltip="Hydrologic Engineering Center's River Analysis System">HEC-RAS</span>, <span class="eng-tooltip" data-tooltip="Storm Water Management Model">EPA SWMM</span>, Civil 3D, and Autodesk Storm & Sanitary Analysis.</p>
+                \n<button class="logic-toggle-btn">View Logic</button>\n<pre class="logic-snippet"><code>def compute_model(data):\n    return optimize_structure(data)\n# Pure mathematical execution.</code></pre></div>
                 <div class="stack-item">
                     <h3>Geospatial Intelligence</h3>
-                    <p>ArcGIS Pro. Spatial data mapping and analysis.</p>
-                </div>
+                    <p><span class="eng-tooltip" data-tooltip="Advanced Geographic Information System">ArcGIS Pro</span>. Spatial data mapping and analysis.</p>
+                \n<button class="logic-toggle-btn">View Logic</button>\n<pre class="logic-snippet"><code>def compute_model(data):\n    return optimize_structure(data)\n# Pure mathematical execution.</code></pre></div>
                 <div class="stack-item">
                     <h3>Data & Automation</h3>
                     <p>Python, Excel/VBA. Data processing and workflow automation.</p>
-                </div>
+                \n<button class="logic-toggle-btn">View Logic</button>\n<pre class="logic-snippet"><code>def compute_model(data):\n    return optimize_structure(data)\n# Pure mathematical execution.</code></pre></div>
                 <div class="stack-item">
                     <h3>Research Modeling</h3>
                     <p>FOD Models, SEM, Satellite Observations, and Gaussian Dispersion for atmospheric analysis.</p>
-                </div>
+                \n<button class="logic-toggle-btn">View Logic</button>\n<pre class="logic-snippet"><code>def compute_model(data):\n    return optimize_structure(data)\n# Pure mathematical execution.</code></pre></div>
             </div>
         </section>
 
@@ -149,7 +149,21 @@
     <!-- Feature 4, 6, 9: Telemetry & Consoles -->
     <div id="dom-console">&gt; SYSTEM READY.</div>
     <div class="telemetry" id="telemetry">NET: CALC | PWR: CALC</div>
-</body>
+
+    <!-- Feature 8: Command-K Modal -->
+    <div id="cmd-k-modal">
+        <input type="text" id="cmd-k-input" placeholder="Type a command or search... (Esc to close)">
+        <div class="cmd-k-results">
+            <a href="/" class="cmd-k-result"><span>Home</span> <span>&#8629;</span></a>
+            <a href="/water-resources/" class="cmd-k-result"><span>Water Resources</span> <span>&#8629;</span></a>
+            <a href="/environmental/" class="cmd-k-result"><span>Environmental Modeling</span> <span>&#8629;</span></a>
+            <a href="/geotech/" class="cmd-k-result"><span>Geotechnical</span> <span>&#8629;</span></a>
+            <a href="/research/" class="cmd-k-result"><span>Academic Research</span> <span>&#8629;</span></a>
+            <a href="/news/" class="cmd-k-result"><span>News & Milestones</span> <span>&#8629;</span></a>
+        </div>
+    </div>
+    <div class="vignette-overlay"></div>
+\n</body>
 </html>
 
 

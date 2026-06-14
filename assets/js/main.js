@@ -586,9 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Device Gyroscope Parallax
-    // Gyroscope parallax removed for Phase 8 architecture fix\n);
-    });
-
+    // Gyroscope parallax removed for Phase 8 architecture fix
     // 5. Wireframe Protocol (Easter Egg 2)
     let keys2 = '';
     const secretCode2 = 'wire';
@@ -724,5 +722,99 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mouseenter', () => {
         document.querySelector('.cursor-dot').style.opacity = '1';
         document.querySelector('.cursor-ring').style.opacity = '1';
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 3. Time-Aware Structural Lighting
+    const updateLighting = () => {
+        const hour = new Date().getHours();
+        // Midnight (0 or 24) is pure black (0%). Noon (12) is 5% lightness.
+        const lightness = 5 - Math.abs(12 - hour) * (5 / 12);
+        document.documentElement.style.setProperty('--bg-color', `hsl(0, 0%, ${lightness}%)`);
+    };
+    updateLighting();
+    setInterval(updateLighting, 60000);
+
+    // 7. Dynamic Favicon Progress
+    const drawFavicon = (progress) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 32; canvas.height = 32;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#000000'; ctx.fillRect(0,0,32,32);
+        ctx.beginPath();
+        ctx.moveTo(16,16);
+        ctx.arc(16,16,12, -Math.PI/2, (progress * 2 * Math.PI) - Math.PI/2);
+        ctx.fillStyle = '#ff0000';
+        ctx.fill();
+        let link = document.querySelector("link[rel~='icon']");
+        if (!link) {
+            link = document.createElement('link'); link.rel = 'icon'; document.head.appendChild(link);
+        }
+        link.href = canvas.toDataURL();
+    };
+    window.addEventListener('scroll', () => {
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const progress = Math.min(Math.max(window.scrollY / docHeight, 0), 1);
+        drawFavicon(progress || 0);
+    });
+
+    // 8. Command-K Search
+    const cmdKModal = document.getElementById('cmd-k-modal');
+    const cmdKInput = document.getElementById('cmd-k-input');
+    if(cmdKModal && cmdKInput) {
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                cmdKModal.classList.toggle('active');
+                if(cmdKModal.classList.contains('active')) cmdKInput.focus();
+            }
+            if (e.key === 'Escape' && cmdKModal.classList.contains('active')) {
+                cmdKModal.classList.remove('active');
+            }
+        });
+        cmdKModal.addEventListener('click', (e) => {
+            if(e.target === cmdKModal) cmdKModal.classList.remove('active');
+        });
+    }
+
+    // 13. Code Snippet Toggles
+    document.querySelectorAll('.logic-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const parent = e.target.closest('.stack-item');
+            parent.classList.toggle('show-logic');
+            e.target.innerText = parent.classList.contains('show-logic') ? 'View Plain Text' : 'View Logic';
+        });
+    });
+
+    // 14. Split-Flap Text Setup
+    document.querySelectorAll('.split-text').forEach(el => {
+        const text = el.innerText;
+        el.innerText = '';
+        text.split(' ').forEach((word, i) => {
+            const wordWrap = document.createElement('span');
+            wordWrap.className = 'split-flap-word';
+            wordWrap.style.marginRight = '0.25em';
+            const innerSpan = document.createElement('span');
+            innerSpan.innerText = word;
+            innerSpan.style.transitionDelay = `${i * 0.05}s`;
+            wordWrap.appendChild(innerSpan);
+            el.appendChild(wordWrap);
+        });
+    });
+
+    // 15. Magnetic Snap Typography
+    document.querySelectorAll('.split-text').forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width/2;
+            const y = e.clientY - rect.top - rect.height/2;
+            el.style.transform = `translate(${x * 0.1}px, ${y * 0.2}px) rotate(${x * 0.02}deg)`;
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = `translate(0px, 0px) rotate(0deg)`;
+        });
     });
 });

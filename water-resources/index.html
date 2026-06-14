@@ -62,7 +62,7 @@
                     <p class="project-desc">
                         Evaluated stormwater infiltration impacts on landfill cover moisture conditions. Assessed drainage network efficiency to optimize methane oxidation rates under heavy load conditions.
                     </p>
-                    <div class="project-tech">Python, ArcGIS Pro, Civil 3D</div>
+                    <div class="project-tech">Python, <span class="eng-tooltip" data-tooltip="Advanced Geographic Information System">ArcGIS Pro</span>, Civil 3D</div>
                 </div>
                 
                 <div class="project-card">
@@ -74,7 +74,7 @@
                     <p class="project-desc">
                         Designed comprehensive urban master plan integrating green infrastructure (bioswales, permeable pavements) to manage peak stormwater runoff and alleviate gray infrastructure strain.
                     </p>
-                    <div class="project-tech">EPA SWMM, HEC-RAS, GIS</div>
+                    <div class="project-tech"><span class="eng-tooltip" data-tooltip="Storm Water Management Model">EPA SWMM</span>, <span class="eng-tooltip" data-tooltip="Hydrologic Engineering Center's River Analysis System">HEC-RAS</span>, GIS</div>
                 </div>
 
                 <div class="project-card">
@@ -84,9 +84,9 @@
                         FEMA Compliance <span class="skim-time">Mapping</span>
                     </div>
                     <p class="project-desc">
-                        Developed 1D and 2D hydraulic models using high-resolution LiDAR data and HEC-RAS. Established accurate inundation boundaries for local zoning and FEMA compliance.
+                        Developed 1D and 2D hydraulic models using high-resolution LiDAR data and <span class="eng-tooltip" data-tooltip="Hydrologic Engineering Center's River Analysis System">HEC-RAS</span>. Established accurate inundation boundaries for local zoning and FEMA compliance.
                     </p>
-                    <div class="project-tech">HEC-RAS 2D, LiDAR, AutoCAD</div>
+                    <div class="project-tech"><span class="eng-tooltip" data-tooltip="Hydrologic Engineering Center's River Analysis System">HEC-RAS</span> 2D, LiDAR, AutoCAD</div>
                 </div>
 
                 <div class="project-card">
@@ -108,16 +108,16 @@
             <div class="stack-grid-creative">
                 <div class="stack-item">
                     <h3>Hydraulic Modeling</h3>
-                    <p>HEC-RAS (1D & 2D), EPA SWMM. Simulation of open-channel flow and closed-conduit stormwater systems.</p>
-                </div>
+                    <p><span class="eng-tooltip" data-tooltip="Hydrologic Engineering Center's River Analysis System">HEC-RAS</span> (1D & 2D), <span class="eng-tooltip" data-tooltip="Storm Water Management Model">EPA SWMM</span>. Simulation of open-channel flow and closed-conduit stormwater systems.</p>
+                \n<button class="logic-toggle-btn">View Logic</button>\n<pre class="logic-snippet"><code>def compute_model(data):\n    return optimize_structure(data)\n# Pure mathematical execution.</code></pre></div>
                 <div class="stack-item">
                     <h3>Design & Drafting</h3>
                     <p>Civil 3D, AutoCAD. Generation of construction plans, profiles, and pipe networks.</p>
-                </div>
+                \n<button class="logic-toggle-btn">View Logic</button>\n<pre class="logic-snippet"><code>def compute_model(data):\n    return optimize_structure(data)\n# Pure mathematical execution.</code></pre></div>
                 <div class="stack-item">
                     <h3>Spatial Analysis</h3>
-                    <p>ArcGIS Pro. Spatial delineation of watersheds, slope calculations, and land use analysis.</p>
-                </div>
+                    <p><span class="eng-tooltip" data-tooltip="Advanced Geographic Information System">ArcGIS Pro</span>. Spatial delineation of watersheds, slope calculations, and land use analysis.</p>
+                \n<button class="logic-toggle-btn">View Logic</button>\n<pre class="logic-snippet"><code>def compute_model(data):\n    return optimize_structure(data)\n# Pure mathematical execution.</code></pre></div>
             </div>
         </section>
 
@@ -161,6 +161,20 @@
     <!-- Feature 4, 6, 9: Telemetry & Consoles -->
     <div id="dom-console">&gt; SYSTEM READY.</div>
     <div class="telemetry" id="telemetry">NET: CALC | PWR: CALC</div>
-</body>
+
+    <!-- Feature 8: Command-K Modal -->
+    <div id="cmd-k-modal">
+        <input type="text" id="cmd-k-input" placeholder="Type a command or search... (Esc to close)">
+        <div class="cmd-k-results">
+            <a href="/" class="cmd-k-result"><span>Home</span> <span>&#8629;</span></a>
+            <a href="/water-resources/" class="cmd-k-result"><span>Water Resources</span> <span>&#8629;</span></a>
+            <a href="/environmental/" class="cmd-k-result"><span>Environmental Modeling</span> <span>&#8629;</span></a>
+            <a href="/geotech/" class="cmd-k-result"><span>Geotechnical</span> <span>&#8629;</span></a>
+            <a href="/research/" class="cmd-k-result"><span>Academic Research</span> <span>&#8629;</span></a>
+            <a href="/news/" class="cmd-k-result"><span>News & Milestones</span> <span>&#8629;</span></a>
+        </div>
+    </div>
+    <div class="vignette-overlay"></div>
+\n</body>
 </html>
 
