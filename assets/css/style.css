@@ -270,3 +270,161 @@ a:hover { opacity: 1; }
   .grid-2 { gap: 4rem; }
   .marquee-content span { font-size: 1rem; }
 }
+
+/* --- PHASE 5 FEATURES --- */
+
+/* 12. High-Contrast Selection Engine */
+::selection {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+/* 15. Secret "Red Alert" Theme */
+body.red-alert-theme {
+  --bg-color: #b91c1c;
+  --text-primary: #000000;
+  --text-secondary: rgba(0,0,0,0.7);
+  --accent-color: #000000;
+}
+body.red-alert-theme .mouse-glow { display: none; }
+body.red-alert-theme .cursor-dot { background-color: #000; }
+
+/* 11. Offline Mode UI */
+body.offline-mode {
+  filter: grayscale(100%) contrast(1.2);
+}
+
+/* 13. Page Slice "Curtain" Transition */
+.curtain {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 1000000;
+  display: flex;
+  flex-direction: column;
+}
+.curtain-slice {
+  width: 100%;
+  height: 33.333vh;
+  background-color: #050505;
+  transform: translateX(100%);
+  transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+body.curtain-active .curtain-slice { transform: translateX(0); }
+body.curtain-active .curtain-slice:nth-child(2) { transition-delay: 0.1s; }
+body.curtain-active .curtain-slice:nth-child(3) { transition-delay: 0.2s; }
+
+/* 14. Staggered RGB Glitch */
+.rgb-glitch {
+  animation: rgbGlitch 0.3s cubic-bezier(0.25, 46.1, 0.2, -44.6);
+}
+@keyframes rgbGlitch {
+  0% { text-shadow: 2px 0 red, -2px 0 blue; transform: translate(0); }
+  20% { text-shadow: -2px 0 red, 2px 0 blue; transform: translate(-2px, 1px); }
+  40% { text-shadow: 2px 0 red, -2px 0 blue; transform: translate(2px, -1px); }
+  60% { text-shadow: -2px 0 red, 2px 0 blue; transform: translate(-2px, 2px); }
+  80% { text-shadow: 2px 0 red, -2px 0 blue; transform: translate(2px, -2px); }
+  100% { text-shadow: none; transform: translate(0); }
+}
+
+/* 4. Live X,Y Coordinate Tracker */
+#coord-tracker {
+  position: fixed;
+  bottom: 15px; left: 15px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  opacity: 0.3;
+  z-index: 9999;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+}
+
+/* 6. DOM Terminal Status Bar */
+#dom-console {
+  position: fixed;
+  bottom: 0; left: 0; width: 100vw; height: 16px;
+  background-color: #050505;
+  color: #00ff00;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  line-height: 16px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  z-index: 9999;
+  opacity: 0.6;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* 9. Device Telemetry */
+.telemetry {
+  position: fixed;
+  bottom: 25px; right: 15px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  opacity: 0.3;
+  z-index: 9999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: right;
+  pointer-events: none;
+}
+
+/* 1. Cursor Reading Progress Ring */
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 40px; height: 40px;
+  pointer-events: none;
+  z-index: 19999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+.cursor-ring circle {
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 1.5;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.1s linear;
+}
+body.page-transitioning .cursor-ring,
+body.curtain-active .cursor-ring { opacity: 0; }
+
+/* 7. Hold-to-Copy Email Interaction */
+.hold-to-copy {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+.hold-progress {
+  position: absolute;
+  top: 0; left: 0; height: 100%; width: 0%;
+  background-color: rgba(185,28,28,0.2);
+  z-index: -1;
+  pointer-events: none;
+}
+.hold-to-copy.copied {
+  color: #00ff00 !important;
+}
+
+/* 5. Interactive Pseudo-Code Swap */
+.pseudo-code-text {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  white-space: pre-wrap;
+}
+
+/* Scroll Velocity Element Skewing target */
+.skew-target {
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
