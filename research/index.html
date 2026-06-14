@@ -1,121 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research | Meshach Ando</title>
-    <meta name="description" content="Academic Research & Publications portfolio of Meshach Ando.">
-    <link rel="stylesheet" href="../assets/css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research | Meshach Ando</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <nav class="header-nav">
-        <a href="../" class="brand">Meshach Ando</a>
-        <div class="nav-links">
-            <a href="../water-resources/">Water Resources</a>
-            <a href="../environmental/">Environmental</a>
-            <a href="../geotech/">Geotechnical</a>
-            <a href="../research/">Research</a>
-            <a href="../assets/docs/Meshach_Ando_Full_CV.pdf" target="_blank">CV</a>
-            <a href="#contact">Contact</a>
+  <header class="header-nav">
+    <a href="../" class="brand">MESHACH ANDO</a>
+    <div class="nav-links">
+      <a href="../water-resources/">Water</a>
+      <a href="../environmental/">Environmental</a>
+      <a href="../geotech/">Geotechnical</a>
+      <a href="../research/">Research</a>
+      <a href="../assets/docs/Meshach_Ando_Full_CV.pdf" target="_blank">CV</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero reveal">
+      <div class="chapter-number">04</div>
+      <h1>Research</h1>
+      <p class="subtitle">Methane Emissions. FOD Models. SEM. Satellite Data. PFAS.</p>
+      <a href="../assets/docs/Meshach_Ando_Research_CV.pdf" target="_blank" class="btn">Download Resume</a>
+    </section>
+
+    <section class="section reveal">
+      <h2 class="section-title">Research Areas</h2>
+      <div class="grid-2">
+        <div class="project-card">
+          <div class="project-number">01</div>
+          <h3 class="project-title">Comparison of Landfill Methane FOD Models</h3>
+          <div class="project-stats">313 landfills | 43 states | 713 landfill-years</div>
+          <p class="project-desc">Compares model-predicted methane generation with measurement-derived emissions to evaluate model behavior, uncertainty, and practical interpretation.</p>
+          <div class="project-tech">Python | ArcGIS Pro | Statistical Analysis</div>
         </div>
-    </nav>
+        <div class="project-card">
+          <div class="project-number">02</div>
+          <h3 class="project-title">SEM-to-Emission-Rate Inverse Modeling</h3>
+          <div class="project-stats">Surface monitoring | Genetic algorithms | Emission rates</div>
+          <p class="project-desc">Uses optimization to infer emission rates from surface emission monitoring observations and atmospheric transport assumptions.</p>
+          <div class="project-tech">Python | Genetic Algorithms | Inverse Modeling</div>
+        </div>
+        <div class="project-card">
+          <div class="project-number">03</div>
+          <h3 class="project-title">PFAS Atmospheric Dispersion + Exposure Screening</h3>
+          <div class="project-stats">Source-receptor logic | Monte Carlo | Screening assessment</div>
+          <p class="project-desc">Frames PFAS air pathway questions through dispersion modeling, spatial exposure screening, and transparent uncertainty assumptions.</p>
+          <div class="project-tech">Gaussian Dispersion | GIS | Monte Carlo</div>
+        </div>
+        <div class="project-card">
+          <div class="project-number">04</div>
+          <h3 class="project-title">Landfill Drainage, Moisture, and Methane Oxidation</h3>
+          <div class="project-stats">Water balance | Cover systems | Oxidation performance</div>
+          <p class="project-desc">Connects drainage, moisture distribution, and landfill cover behavior to methane oxidation and environmental performance.</p>
+          <div class="project-tech">Water balance | Landfill systems | Environmental modeling</div>
+        </div>
+      </div>
+    </section>
 
-    <main class="container">
-        <section class="hero reveal">
-            <div class="chapter-number">04</div>
-            <h1>Research</h1>
-            <p class="subtitle">Methane Emissions. FOD Models. SEM. Satellite Data. PFAS.</p>
-            <div>
-                <a href="#areas" class="btn">View Research</a>
-                <a href="../assets/docs/Meshach_Ando_Research_CV.pdf" target="_blank" class="btn">Download Research CV</a>
-                <a href="#contact" class="btn">Contact</a>
-            </div>
-        </section>
+    <section class="section reveal">
+      <h2 class="section-title" style="margin-bottom: 1.5rem; font-size: 1.5rem;">Methods</h2>
+      <div class="stack-group">
+        <p>First-order decay model comparison and diagnostic visualization.</p>
+        <p>Inverse modeling using genetic algorithms and SEM observations.</p>
+        <p>Gaussian dispersion and Monte Carlo screening for atmospheric exposure questions.</p>
+        <p>GIS workflows for spatial joins, receptor context, and publication figures.</p>
+      </div>
+    </section>
 
-        <section id="areas" class="section reveal">
-            <div class="section-header">
-                <h2 class="section-title">Research Areas</h2>
-            </div>
-            
-            <div class="grid-2">
-                <div class="project-card reveal">
-                    <div class="project-number">01</div>
-                    <h3 class="project-title">FOD Models & Measurement</h3>
-                    <div class="project-stats">Emissions Analysis</div>
-                    <p class="project-desc">Comparison of landfill methane First-Order Decay (FOD) models with measurement-derived emissions to identify discrepancies and propose empirically-backed calibration factors for national greenhouse gas inventories.</p>
-                    <div class="project-tech">FOD Models | Statistical Modeling</div>
-                </div>
+    <section class="section reveal">
+      <h2 class="section-title" style="margin-bottom: 1.5rem; font-size: 1.5rem;">Datasets / Code</h2>
+      <div class="stack-group">
+        <p>Code repository placeholder: github.com/meshando-unf</p>
+        <p>Dataset inventory placeholder for cleaned model inputs and outputs.</p>
+        <p>Documentation placeholder for methods, assumptions, and reproducibility notes.</p>
+      </div>
+    </section>
 
-                <div class="project-card reveal">
-                    <div class="project-number">02</div>
-                    <h3 class="project-title">SEM Inverse Modeling</h3>
-                    <div class="project-stats">Algorithm Development</div>
-                    <p class="project-desc">SEM-to-emission-rate inverse modeling utilizing genetic algorithms and dispersion techniques. This novel approach transforms compliance concentration monitoring into quantifiable mass emission rates.</p>
-                    <div class="project-tech">Inverse Modeling | Genetic Algorithms</div>
-                </div>
+    <footer class="minimal-footer reveal">
+      <a href="mailto:meshachando.apply@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/meshachando" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/meshando-unf" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://orcid.org/0009-0002-5048-3672" target="_blank" rel="noopener">ORCID</a>
+    </footer>
+  </main>
 
-                <div class="project-card reveal">
-                    <div class="project-number">03</div>
-                    <h3 class="project-title">PFAS Dispersion</h3>
-                    <div class="project-stats">Atmospheric Transport</div>
-                    <p class="project-desc">Evaluating PFAS atmospheric dispersion and exposure screening. Integrating meteorological data and emission factors to model the transport and deposition of persistent 'forever chemicals' from waste sources.</p>
-                    <div class="project-tech">Gaussian Dispersion | Risk Assessment</div>
-                </div>
-
-                <div class="project-card reveal">
-                    <div class="project-number">04</div>
-                    <h3 class="project-title">Landfill Drainage & Oxidation</h3>
-                    <div class="project-stats">System Performance</div>
-                    <p class="project-desc">Investigating landfill drainage, internal moisture dynamics, and their integrated effect on methane oxidation performance in biocover systems.</p>
-                    <div class="project-tech">Hydrologic Modeling | Biogeochemistry</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="outputs" class="section reveal">
-            <div class="grid-2">
-                <div>
-                    <h2 class="section-title">Research Outputs</h2>
-                    <br><br>
-                    <div class="stack-group">
-                        <h3>Manuscripts</h3>
-                        <p>Pending peer-reviewed publications detailing the discrepancies between modeled and measured emissions across 313 U.S. landfills.</p>
-                    </div>
-                    <div class="stack-group">
-                        <h3>Presentations</h3>
-                        <p>Conference proceedings and technical presentations sharing findings on SEM inverse modeling and PFAS dispersion methodologies.</p>
-                    </div>
-                    <div class="stack-group">
-                        <h3>Datasets & Code</h3>
-                        <p>Open-source Python scripts and data repositories facilitating reproducibility in inverse modeling and spatial analysis.</p>
-                    </div>
-                </div>
-                
-                <div>
-                    <h2 class="section-title">Methods & Tools</h2>
-                    <br><br>
-                    <div class="stack-group">
-                        <h3>Core Methodologies</h3>
-                        <p>First-Order Decay (FOD) Modeling | Inverse Modeling | Genetic Algorithms | Gaussian Dispersion | Monte Carlo Simulation</p>
-                    </div>
-                    <div class="stack-group">
-                        <h3>Software & Programming</h3>
-                        <p>Python (Pandas, SciPy, DEAP) | ArcGIS Pro | EPA AERMOD | EPA LandGEM</p>
-                    </div>
-                    <br>
-                    <a href="../assets/docs/Meshach_Ando_Research_CV.pdf" target="_blank" class="btn">Download Research CV</a>
-                </div>
-            </div>
-        </section>
-
-        <footer class="minimal-footer reveal">
-            <a href="mailto:placeholder@example.com">Email</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">GitHub</a>
-            <a href="#">Google Scholar</a>
-        </footer>
-    </main>
-
-    <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>
